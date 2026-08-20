@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rafaela • Instagram</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#fafafa;
+    color:#222;
+}
+
+/* TOPO */
+
+header{
+    height:60px;
+    background:white;
+    border-bottom:1px solid #ddd;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    font-style:italic;
+}
+
+.search{
+    width:250px;
+    padding:9px 15px;
+    border:0;
+    background:#f1f1f1;
+    border-radius:8px;
+    outline:none;
+}
+
+.icons{
+    display:flex;
+    gap:18px;
+    font-size:23px;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:700px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+/* PERFIL */
+
+.profile{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    padding:25px;
+
+    display:flex;
+    align-items:center;
+    gap:30px;
+
+    margin-bottom:20px;
+}
+
+.profile-photo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+
+    padding:4px;
+
+    background:linear-gradient(
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
+    );
+}
+
+.profile-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid white;
+}
+
+.profile-info h1{
+    margin-bottom:12px;
+}
+
+.stats{
+    display:flex;
+    gap:20px;
+    margin-bottom:12px;
+}
+
+.bio{
+    line-height:1.5;
+}
+
+/* CRIAR POST */
+
+.create{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.create h2{
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.create textarea{
+    width:100%;
+    min-height:90px;
+    resize:vertical;
+
+    border:1px solid #ddd;
+    border-radius:8px;
+
+    padding:12px;
+
+    font-size:15px;
+    font-family:Arial;
+
+    outline:none;
+}
+
+.file{
+    margin:12px 0;
+}
+
+button{
+    background:#0095f6;
+    color:white;
+
+    border:0;
+    border-radius:7px;
+
+    padding:10px 18px;
+
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#007acb;
+}
+
+/* POST */
+
+.post{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+}
+
+.post-header{
+    height:60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:10px 15px;
+}
+
+.user{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    background:#ffd6df;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+}
+
+.delete{
+    cursor:pointer;
+    font-size:20px;
+}
+
+/* IMAGEM */
+
+.post-image{
+    width:100%;
+    max-height:650px;
+    object-fit:cover;
+    display:block;
+}
+
+/* POST SEM FOTO */
+
+.text-post{
+    min-height:220px;
+
+    padding:35px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    font-size:25px;
+    font-weight:bold;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #833ab4,
+        #fd1d1d,
+        #fcb045
+    );
+}
+
+/* AÇÕES */
+
+.actions{
+    display:flex;
+    gap:18px;
+
+    padding:12px 15px;
+
+    font-size:30px;
+}
+
+.action{
+    cursor:pointer;
+}
+
+.liked{
+    color:red;
+}
+
+/* CONTEÚDO */
+
+.content{
+    padding:0 15px 12px;
+}
+
+.likes{
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.caption{
+    margin-bottom:10px;
+    line-height:1.5;
+}
+
+.comments{
+    margin-bottom:10px;
+}
+
+.comment{
+    margin-bottom:6px;
+}
+
+.comment strong{
+    margin-right:5px;
+}
+
+/* FORM COMENTÁRIO */
+
+.comment-form{
+    border-top:1px solid #eee;
+
+    display:flex;
+
+    padding:12px 15px;
+}
+
+.comment-form input{
+    flex:1;
+
+    border:0;
+    outline:none;
+
+    font-size:14px;
+}
+
+.comment-form button{
+    padding:6px 12px;
+}
+
+/* CELULAR */
+
+@media(max-width:600px){
+
+    .search{
+        display:none;
+    }
+
+    .profile{
+        padding:18px;
+        gap:18px;
+    }
+
+    .profile-photo{
+        width:85px;
+        height:85px;
+    }
+
+    .stats{
+        gap:8px;
+        font-size:12px;
+    }
+
+    .stats strong{
+        font-size:14px;
+    }
+
+    .bio{
+        font-size:13px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- TOPO -->
+
+<header>
+
+    <div class="logo">
+        Instagram
+    </div>
+
+    <input
+        class="search"
+        placeholder="Pesquisar"
+    >
+
+    <div class="icons">
+        🏠 ❤️ 👤
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- PERFIL -->
+
+<section class="profile">
+
+    <div class="profile-photo">
+
+        <!-- LINK DA IMAGEM DO PERFIL -->
+        <img
+            src="images.jpeg"
+            alt="Rafaela"
+        >
+
+    </div>
+
+
+    <div class="profile-info">
+
+        <h1>rafaela</h1>
+
+        <div class="stats">
+
+            <span>
+                <strong id="postCount">0</strong>
+                publicações
+            </span>
+
+            <span>
+                <strong>1.245</strong>
+                seguidores
+            </span>
+
+            <span>
+                <strong>387</strong>
+                seguindo
+            </span>
+
+        </div>
+
+
+        <div class="bio">
+
+            <strong>Rafaela 💕</strong><br>
+
+            ✨ Vivendo meus melhores momentos<br>
+
+            📸 Fotos, viagens e coisas que amo
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CRIAR PUBLICAÇÃO -->
+
+<section class="create">
+
+    <h2>
+        ✨ Criar publicação
+    </h2>
+
+
+    <textarea
+        id="postText"
+        placeholder="O que você está pensando?"
+    ></textarea>
+
+
+    <input
+        class="file"
+        type="file"
+        id="photoInput"
+        accept="image/*"
+    >
+
+
+    <br>
+
+
+    <button onclick="createPost()">
+        Publicar
+    </button>
+
+</section>
+
+
+<!-- FEED -->
+
+<section id="feed"></section>
+
+
+</main>
+
+
+<script>
+
+/* CONTADOR */
+
+let postCount = 0;
+
+
+/* CRIAR PUBLICAÇÃO */
+
+function createPost(){
+
+    const text =
+        document
+        .getElementById("postText")
+        .value
+        .trim();
+
+    const photo =
+        document
+        .getElementById("photoInput")
+        .files[0];
+
+
+    /* precisa de texto ou foto */
+
+    if(!text && !photo){
+
+        alert(
+            "Digite um texto ou escolha uma foto!"
+        );
+
+        return;
+    }
+
+
+    const post =
+        document.createElement("article");
+
+    post.className="post";
+
+
+    /* CABEÇALHO */
+
+    const header =
+        document.createElement("div");
+
+    header.className="post-header";
+
+
+    header.innerHTML=`
+
+        <div class="user">
+
+            <div class="avatar">
+                👩🏻
+            </div>
+
+            <strong>
+                rafaela
+            </strong>
+
+        </div>
+
+        <span
+            class="delete"
+            onclick="deletePost(this)"
+        >
+            ⋯
+        </span>
+    `;
+
+
+    post.appendChild(header);
+
+
+    /* FOTO */
+
+    if(photo){
+
+        const image =
+            document.createElement("img");
+
+        image.className="post-image";
+
+        image.src =
+            URL.createObjectURL(photo);
+
+        image.alt="Foto publicada por Rafaela";
+
+        post.appendChild(image);
+
+    }
+
+
+    /* TEXTO SEM FOTO */
+
+    if(text && !photo){
+
+        const textPost =
+            document.createElement("div");
+
+        textPost.className="text-post";
+
+        textPost.textContent=text;
+
+        post.appendChild(textPost);
+
+    }
+
+
+    /* AÇÕES */
+
+    const actions =
+        document.createElement("div");
+
+    actions.className="actions";
+
+
+    actions.innerHTML=`
+
+        <span
+            class="action"
+            onclick="likePost(this)"
+        >
+            ♡
+        </span>
+
+        <span class="action">
+            💬
+        </span>
+
+        <span class="action">
+            📤
+        </span>
+
+    `;
+
+
+    post.appendChild(actions);
+
+
+    /* CONTEÚDO */
+
+    const content =
+        document.createElement("div");
+
+    content.className="content";
+
+
+    let caption="";
+
+
+    if(text && photo){
+
+        caption=`
+
+            <div class="caption">
+
+                <strong>rafaela</strong>
+
+                ${escapeHTML(text)}
+
+            </div>
+
+        `;
+
+    }
+
+
+    content.innerHTML=`
+
+        <div class="likes">
+
+            <span class="likeNumber">
+                0
+            </span>
+
+            curtidas
+
+        </div>
+
+        ${caption}
+
+        <div class="comments"></div>
+
+    `;
+
+
+    post.appendChild(content);
+
+
+    /* COMENTÁRIO */
+
+    const form =
+        document.createElement("form");
+
+    form.className="comment-form";
+
+
+    form.innerHTML=`
+
+        <input
+            type="text"
+            placeholder="Adicione um comentário..."
+            required
+        >
+
+        <button>
+            Publicar
+        </button>
+
+    `;
+
+
+    form.onsubmit=function(event){
+
+        addComment(
+            event,
+            this
+        );
+
+    };
+
+
+    post.appendChild(form);
+
+
+    /* COLOCAR NO TOPO */
+
+    document
+        .getElementById("feed")
+        .prepend(post);
+
+
+    /* CONTADOR */
+
+    postCount++;
+
+    document
+        .getElementById("postCount")
+        .textContent=postCount;
+
+
+    /* LIMPAR */
+
+    document
+        .getElementById("postText")
+        .value="";
+
+    document
+        .getElementById("photoInput")
+        .value="";
+
+}
+
+
+/* CURTIR */
+
+function likePost(button){
+
+    const post =
+        button.closest(".post");
+
+
+    const number =
+        post.querySelector(
+            ".likeNumber"
+        );
+
+
+    let likes =
+        parseInt(
+            number.textContent
+        );
+
+
+    if(
+        button.classList.contains(
+            "liked"
+        )
+    ){
+
+        likes--;
+
+        button.classList.remove(
+            "liked"
+        );
+
+        button.textContent="♡";
+
+    }else{
+
+        likes++;
+
+        button.classList.add(
+            "liked"
+        );
+
+        button.textContent="♥";
+
+    }
+
+
+    number.textContent=likes;
+
+}
+
+
+/* COMENTAR */
+
+function addComment(
+    event,
+    form
+){
+
+    event.preventDefault();
+
+
+    const input =
+        form.querySelector(
+            "input"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+        return;
+    }
+
+
+    const post =
+        form.closest(".post");
+
+
+    const comments =
+        post.querySelector(
+            ".comments"
+        );
+
+
+    const comment =
+        document.createElement(
+            "div"
+        );
+
+
+    comment.className="comment";
+
+
+    comment.innerHTML=`
+
+        <strong>rafaela</strong>
+
+        ${escapeHTML(text)}
+
+    `;
+
+
+    comments.appendChild(
+        comment
+    );
+
+
+    input.value="";
+
+}
+
+
+/* EXCLUIR */
+
+function deletePost(button){
+
+    if(
+        !confirm(
+            "Excluir esta publicação?"
+        )
+    ){
+        return;
+    }
+
+
+    const post =
+        button.closest(".post");
+
+
+    post.remove();
+
+
+    postCount--;
+
+
+    document
+        .getElementById("postCount")
+        .textContent=postCount;
+
+}
+
+
+/* PROTEGER TEXTO */
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent=text;
+
+    return div.innerHTML;
+
+}
+
+</script>
+
+</body>
+</html>
